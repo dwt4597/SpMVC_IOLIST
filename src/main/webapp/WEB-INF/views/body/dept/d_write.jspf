@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" 
+		prefix="form" %>
+
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
+<script>
+	$(function(){
+		$("#btn_new").click(function(){
+			$.get("${rootPath}/dept/get_new_code",function(result){
+				$("#d_code").val(result)
+			})
+			
+		})
+	})
+
+</script>
+<!-- $.get : method : GET일 때 이렇게 사용. -->
+
+<!-- form tag : value를 입력안해도됨 -->
+<form:form 
+	modelAttribute="deptVO">
+	
+	<fieldset>
+	<legend>거래처 정보 등록</legend>
+	<div class="in-box-border">
+		<form:input class="in-box code" 
+			placeholder="거래처 코드"
+			id="d_code" 
+			path="d_code" />
+			<button id="btn_new" type="button">새로작성</button>
+			<br/>
+		<form:errors path="d_code" class="in-box-error"/>
+	</div>
+			
+	<div class="in-box-border">
+		<form:input class="in-box"
+			placeholder="거래처 명"
+			id="d_name" 
+			path="d_name" /><br/>
+		<form:errors path="d_name"  class="in-box-error"/>
+	</div>
+
+	<div class="in-box-border">
+		<form:input class="in-box"
+			placeholder="대표자 명"
+			id="d_ceo" 
+			path="d_ceo" /><br/>
+		<form:errors path="d_ceo"  class="in-box-error"/>
+	</div>
+	
+	<div class="in-box-border">
+		<form:input  class="in-box"
+			placeholder="대표자 전화"
+			id="d_tel" 
+			path="d_tel" /><br/>
+		<form:errors path="d_tel" />
+	</div>
+
+	<div class="in-box-border">
+		<form:input  class="in-box"
+			placeholder="주소"
+			id="d_addr" 
+			path="d_addr" /><br/>
+		<form:errors path="d_addr" />
+	</div>	
+	<hr/>
+	
+	<button id="btn-write" type="submit">저장</button>
+	</fieldset>
+</form:form>
